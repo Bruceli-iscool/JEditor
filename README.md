@@ -1,2 +1,2 @@
-# ide
-a attempt at making an ide for java
+# JEditor
+a attempt to make a text editor in java
