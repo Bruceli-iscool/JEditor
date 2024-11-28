@@ -18,13 +18,17 @@ public class editor {
         n.setSize(1600, 900);
         n.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         n.setLayout(null);
-
+        JTextArea a = new JTextArea();
+        a.setText(content);
+        JScrollPane p = new JScrollPane(a);
+        p.setBounds(50, 50, 1500, 200);
         JButton saveButton = new JButton("Save");
         saveButton.setBounds(50, 300, 100, 30);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try (FileWriter nm = new FileWriter(f)) {
+                    content = a.getText();
                     nm.write(content);
                 } catch (IOException e1) {
                     e1.printStackTrace();
@@ -41,6 +45,7 @@ public class editor {
             }
         });
 
+        n.add(p);
         n.add(saveButton);
         n.add(loadButton);
     }

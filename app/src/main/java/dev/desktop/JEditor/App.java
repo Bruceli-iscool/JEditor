@@ -32,7 +32,6 @@ public class App {
                 }
             }
         });
-
         launcher.add(select);
         launcher.setVisible(true);
     }
