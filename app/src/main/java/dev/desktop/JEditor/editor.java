@@ -1,40 +1,51 @@
 package dev.desktop.JEditor;
+
 import java.io.FileWriter;
 import java.io.IOException;
-import java.awt.event.*;
-import javax.swing.*;
 import java.nio.file.*;
+import javax.swing.*;
+import java.awt.event.*;
+
 public class editor {
     String f;
     JFrame n;
     String content;
+
     public editor(String filename) throws IOException {
-        n = new JFrame("JEditor " + filename);
         f = filename;
-        n.setSize(1600, 900);
-        content = Files.readString(Paths.get(filename));
-    }
-    public void open() {
+        content = Files.readString(Paths.get(f));
         n = new JFrame("JEditor " + f);
+        n.setSize(1600, 900);
+        n.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        n.setLayout(null);
+
         JButton saveButton = new JButton("Save");
+        saveButton.setBounds(50, 300, 100, 30);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FileWriter nm;
-                try {
-                    nm = new FileWriter(f);
-                    try {
-                        nm.write(content);
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
+                try (FileWriter nm = new FileWriter(f)) {
+                    nm.write(content);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
             }
         });
+
+        JButton loadButton = new JButton("Load");
+        loadButton.setBounds(200, 300, 100, 30);
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // implement
+            }
+        });
+
         n.add(saveButton);
-        JButton load = new JButton("Load");
-        // implement load
+        n.add(loadButton);
+    }
+
+    public void open() {
+        n.setVisible(true);
     }
 }
