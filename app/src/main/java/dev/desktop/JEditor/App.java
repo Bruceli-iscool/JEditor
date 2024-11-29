@@ -6,7 +6,11 @@ import javax.swing.*;
 
 public class App {
     public static void main(String[] args) throws IOException {
+        try {
         launcher();
+    } catch (Exception e1) {
+        e1.printStackTrace();
+    }
     }
 
     protected static void launcher() throws IOException {
