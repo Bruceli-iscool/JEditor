@@ -16,7 +16,7 @@ public class editor {
         content = Files.readString(Paths.get(f));
         n = new JFrame("JEditor " + f);
         n.setSize(1600, 900);
-        n.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        n.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         n.setLayout(null);
         JTextArea a = new JTextArea();
         a.setText(content);
